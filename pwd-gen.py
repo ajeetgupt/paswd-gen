@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
+import streamlit as st
 import random
 import string
 
@@ -18,17 +19,11 @@ def generate_random_password(length):
     return password
 
 def main():
-    try:
-        password_length = int(input("Enter desired password length: "))
-        if password_length <= 0:
-            print("Please enter a positive integer for password length.")
-            return
-
-        generated_password = generate_random_password(password_length)
-        print(f"Generated password: {generated_password}")
-    except ValueError:
-        print("Invalid input. Please enter a valid positive integer.")
-
+    st.title("Random Password Generator")
+    password_length = st.number_input("Enter desired password length:", min_value=1, value=8)
+    generated_password = generate_random_password(password_length)
+    # Display the generated password
+    st.write(f"Generated password: {generated_password}")
 if __name__ == "__main__":
     main()
 
